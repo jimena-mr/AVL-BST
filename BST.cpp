@@ -29,12 +29,26 @@ void insert(TreeNode* &root, int val) {
 
 
 // remove element  
-TreeNode* findMin(TreeNode* node) {
+TreeNode* Tree_minimun(TreeNode* node) {
     while (node->left != nullptr) {
         node = node->left;
     }
     return node;
 }
+
+/*/
+TreeNode* Tree_succesor(TreeNode* node){
+    if (node->right != NULL)
+        return Tree_minimun(node->right);
+    int y = node->parent;    
+    while( y != NULL && node == y->right){
+        node = y;
+        y = y->parent;
+    }
+        return y
+}
+
+*/
 
 void remove(TreeNode* &root, int val) {
     if (root == nullptr) {
@@ -55,7 +69,7 @@ void remove(TreeNode* &root, int val) {
             delete root;
             root = temp;
         } else {
-            TreeNode* temp = findMin(root->right);
+            TreeNode* temp = Tree_minimun(root->right);
             root->val = temp->val;
             remove(root->right, temp->val);
         }
